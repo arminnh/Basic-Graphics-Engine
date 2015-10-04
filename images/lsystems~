@@ -1,0 +1,57 @@
+#!/bin/bash
+YES="Y" # answer yes
+echo -n "Wilt u alle .ini files laten uitvoeren? (Y/N): "
+read answer
+if [ "$answer" == "$YES" ]; then
+	echo "Executing all .ini files, stand-bye"
+	./engine ./data/l_systems001.ini
+	./engine ./data/l_systems002.ini
+	./engine ./data/l_systems003.ini
+	./engine ./data/l_systems004.ini
+	./engine ./data/l_systems005.ini
+	./engine ./data/l_systems006.ini
+	./engine ./data/l_systems007.ini
+	./engine ./data/l_systems008.ini
+	echo ./engine ./data/l_systems009.ini
+	./engine ./data/l_systems009.ini
+	echo ./engine ./data/l_systems010.ini
+	./engine ./data/l_systems010.ini
+	echo ./engine ./data/l_systems011.ini
+	./engine ./data/l_systems011.ini
+	echo ./engine ./data/l_systems012.ini
+	./engine ./data/l_systems012.ini
+	echo ./engine ./data/l_systems013.ini
+	./engine ./data/l_systems013.ini
+	echo ./engine ./data/l_systems014.ini
+	./engine ./data/l_systems014.ini
+	echo ./engine ./data/l_systems015.ini
+	./engine ./data/l_systems015.ini
+	echo ./engine ./data/l_systems016.ini
+	./engine ./data/l_systems016.ini
+	echo ./engine ./data/l_systems017.ini
+	./engine ./data/l_systems017.ini
+	echo ./engine ./data/l_systems018.ini
+	./engine ./data/l_systems018.ini
+	echo ./engine ./data/l_systems019.ini
+	./engine ./data/l_systems019.ini
+	echo ./engine ./data/l_systems020.ini
+	./engine ./data/l_systems020.ini
+	echo ./engine ./data/l_systems021.ini
+	./engine ./data/l_systems021.ini
+	echo ./engine ./data/l_systems022.ini
+	./engine ./data/l_systems022.ini
+	echo ./engine ./data/l_systems023.ini
+	./engine ./data/l_systems023.ini
+	echo ./engine ./data/l_systems024.ini
+	./engine ./data/l_systems024.ini
+	echo ./engine ./data/l_systems025.ini
+	./engine ./data/l_systems025.ini
+	echo ./engine ./data/l_systems026.ini
+	./engine ./data/l_systems026.ini
+	#for i in 1 2 3 4 5 6 7 8 9
+	#do
+	#./engine ./data/l_system00 $i .ini
+	#done
+else
+	echo "Terminating script"
+fi
