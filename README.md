@@ -1,6 +1,6 @@
 #Basic Graphics Engine
 A basic image generator written in C++ as part of a Computer Graphics course at the [University of Antwerp](https://www.uantwerpen.be/popup/opleidingsonderdeel.aspx?catalognr=1001WETCGR&taal=en&aj=2014).<br>
-The engine will create .png images by using a description in text files.
+The engine will create .bmp images by using a description in text files.
 
 ![alt text](https://raw.githubusercontent.com/arminnh/Basic-Graphics-Engine/master/images/spheres_and_cylinders/spheres_and_cylinders014.png)
 
@@ -43,6 +43,13 @@ options:
    * lightingdiffuse
    * lightingspecular
    * spheresandcylinders
+
+###Libraries used
+* EasyImage
+* ini_configuration
+* lparser
+* vector3D
+Documentation can be found in slides+pdfs/tools/
 
 <br> <br> <br>
 ####Todo
