@@ -9,7 +9,8 @@ The engine will create .bmp images by using a description in text files.
 * Linedrawings
 * 3D figures
 * Z buffering with lines and with triangles
-    #####pdfs for implementing features
+
+ #####pdfs for implementing features
     * 3D fractals
     * lighting
         * Ambient
@@ -30,7 +31,7 @@ Engine will be created in the images folder
 ###Usage
 engine [files]
 
-script option\s
+script [options]  
 options:
    * all
    * 2dlsystems
