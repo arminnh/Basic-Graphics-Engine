@@ -10,16 +10,6 @@ The engine will create .bmp images by using a description in text files.
 * 3D figures
 * Z buffering with lines and with triangles
 
- #####pdfs for implementing features
-    * 3D fractals
-    * lighting
-        * Ambient
-        * Diffuse
-        * Specular
-    * Shadowing
-    * Texture Mapping
-    * Spheres and cylinders
-
 ###Install
 in src:
 ```bash
