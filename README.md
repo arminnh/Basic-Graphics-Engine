@@ -9,31 +9,47 @@ The engine will create .bmp images by using a description in text files.
 * Linedrawings
 * 3D figures
 * Z buffering with lines and with triangles
+<br>
+
+##### pdfs included for implementing features
+* 3D fractals
+* Lighting
+  * Ambient
+  * Diffuse
+  * Specular
+* Shadowing
+* Texture Mapping
+* Spheres and cylinders
 
 ###Install
-in src:
+in src/
 ```bash
 make
 make clean
 ```
-Engine will be created in the images folder
+The engine will be created in the images folder.
 
 ###Usage
+Generate specific images
+```
 engine [files]
-
+```
+Generate sets of images
+```
 script [options]  
+```
 options:
-   * all
-   * 2dlsystems
-   * linedrawings
-   * 3dfigures
-   * zbufferinglines
-   * zbufferingtriangles
-   * 3dfractals
-   * lightingambient
-   * lightingdiffuse
-   * lightingspecular
-   * spheresandcylinders
+  * all
+  * 2dlsystems
+  * linedrawings
+  * 3dfigures
+  * zbufferinglines
+  * zbufferingtriangles
+  * 3dfractals
+  * lightingambient
+  * lightingdiffuse
+  * lightingspecular
+  * spheresandcylinders
 
 ###Libraries used
 * EasyImage
@@ -42,8 +58,7 @@ options:
 * vector3D
 Documentation can be found in slides+pdfs/tools/
 
-<br> <br> <br>
 ####Todo
-Finish features + CMake + images script + tests
+Finish features + CMake + images script
 
 
