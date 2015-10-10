@@ -1,5 +1,5 @@
 #Basic Graphics Engine
-A basic image generator written in C++ as part of a Computer Graphics course at the [University of Antwerp](https://www.uantwerpen.be/popup/opleidingsonderdeel.aspx?catalognr=1001WETCGR&taal=en&aj=2014).<br>
+A basic image generator written in C++ as part of a [Computer Graphics course](https://www.uantwerpen.be/popup/opleidingsonderdeel.aspx?catalognr=1001WETCGR&taal=en&aj=2014) at the University of Antwerp.<br>
 The engine will create .bmp images by using a description in text files.
 
 ![alt text](https://raw.githubusercontent.com/arminnh/Basic-Graphics-Engine/master/images/spheres_and_cylinders/spheres_and_cylinders014.png)
