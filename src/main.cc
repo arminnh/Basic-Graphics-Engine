@@ -1,28 +1,23 @@
-/******************************************
-* Author: Armin Halilovic
-* Date: 26 februari 2013 - 8 maart 2013 
-* Title: engine.cpp
-******************************************/
+#include <fstream>
 
-#include "2Dlines.h"
-#include "3Dlines.h"
-#include "Zbuffering.h"
+#include <EasyImage.h>
+#include <ini_configuration.hh>
 
-img::EasyImage generate_image(const ini::Configuration &config) {
-	std::string type = config["General"]["type"].as_string_or_die();
+img::EasyImage create_image(const ini::Configuration &config) {
+    std::string type = config["General"]["type"].as_string_or_die();
 
-	if (type == "2DLSystem") {
-		return teken_2DL(config);
-	} else if (type == "Wireframe") {
-		return teken_3D_lijntekening(config);
-	}  else if (type == "ZBufferedWireframe") {
-		return teken_ZBuff_lijntekening(config);
-	} else if (type == "ZBuffering") {
-		return teken_ZBuff_tekening(config);
-	} else {
-		std::cerr << "Unknown image type." << std::endl;
-		return img::EasyImage();
-	}
+//     if (type == "2DLSystem") {
+//         return create_2DL_image(config);
+//     } else if (type == "Wireframe") {
+//         return create_wireframe_image(config);
+//     }  else if (type == "ZBufferedWireframe") {
+//         return create_zbuffered_wireframe_image(config);
+//     } else if (type == "ZBuffering") {
+//         return create_zbuffered_image(config);
+//     } else {
+//         std::cerr << "Unknown image type." << std::endl;
+//         return img::EasyImage();
+//     }
 }
 
 int main(int argc, char const* argv[]) {
@@ -45,7 +40,7 @@ int main(int argc, char const* argv[]) {
                                 continue;
                         }
 
-                        img::EasyImage image = generate_image(conf);
+                        img::EasyImage image = create_image(conf);
                         if(image.get_height() > 0 && image.get_width() > 0)
                         {
                                 std::string fileName(argv[i]);
@@ -73,17 +68,17 @@ int main(int argc, char const* argv[]) {
                         }
                         else
                         {
-                                std::cout << "Could not generate image for " << argv[i] << std::endl;
+                                std::cout << "Could not create image for " << argv[i] << std::endl;
                         }
                 }
         }
         catch(const std::bad_alloc &exception)
         {
-    		//When you run out of memory this exception is thrown. When this happens the return value of the program MUST be '100'.
-    		//Basically this return value tells our automated test scripts to run your engine on a pc with more memory.
-    		//(Unless of course you are already consuming the maximum allowed amount of memory) 
-    		//If your engine does NOT adhere to this requirement you risk losing points because then our scripts will 
-			//mark the test as failed while in reality it just needed a bit more memory
+            //When you run out of memory this exception is thrown. When this happens the return value of the program MUST be '100'.
+            //Basically this return value tells our automated test scripts to run your engine on a pc with more memory.
+            //(Unless of course you are already consuming the maximum allowed amount of memory) 
+            //If your engine does NOT adhere to this requirement you risk losing points because then our scripts will 
+            //mark the test as failed while in reality it just needed a bit more memory
                 std::cerr << "Error: insufficient memory" << std::endl;
                 retVal = 100;
         }

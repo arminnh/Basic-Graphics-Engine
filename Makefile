@@ -1,6 +1,6 @@
 CXXFLAGS   = -Wall -Wextra -g3 -fstack-protector-all
 LDFLAGS    =
-EXECUTABLE = ../images/engine
+EXECUTABLE = bin/engine
 EXTENSION  = cc
 SOURCES    = $(basename $(shell find . -name '*.$(EXTENSION)'))
 
