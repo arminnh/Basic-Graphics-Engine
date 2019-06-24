@@ -1,6 +1,8 @@
 engine
 .vscode
 *.~
+.~lock*.ppt#
+*.bmp
 
 ## C++
 # Prerequisites
