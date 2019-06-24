@@ -953,7 +953,7 @@ namespace ini
                          *
                          * \param original The INI configuration that is copied.
                          */
-                        Configuration(const Configuration &original);
+                        Configuration(const Configuration &original) = delete;
 
                         /**
                          * \brief Copies an INI configuration.
@@ -966,7 +966,7 @@ namespace ini
                          *
                          * \return A reference to this INI configuration.
                          */
-                        Configuration &operator=(const Configuration &original);
+                        Configuration &operator=(const Configuration &original) = delete;
 
                 public:
 

@@ -21,6 +21,7 @@
 #include <math.h>
 #include <iostream>
 
+#undef le32toh
 #define le32toh(x) (x)
 
 namespace
@@ -193,8 +194,8 @@ img::Color& img::EasyImage::operator()(unsigned int x, unsigned int y)
 {
 	assert(x < this->width);
 	assert(y < this->height);
-	assert(0 <= x);
-	assert(0 <= y);
+	// assert(0 <= x); always true
+	// assert(0 <= y); always true
 	return bitmap.at(x * height + y);
 }
 

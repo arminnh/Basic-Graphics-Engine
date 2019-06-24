@@ -949,7 +949,7 @@ namespace ini
 
                         switch(chr)
                         {
-                                case '-': sign = -1;
+                                case '-': sign = -1; [[fallthrough]];
                                 case '+': chr = input_stream.get();
                         }
 
@@ -1150,7 +1150,7 @@ namespace ini
                                         skip_hspace(input_stream);
                                         assert_chars(input_stream, "=");
                                         skip_hspace(input_stream);
-                                        std::auto_ptr<Value> value(read_value(input_stream));
+                                        std::unique_ptr<Value> value(read_value(input_stream));
 
                                         if(!values.insert(std::make_pair(key, value.get())).second)
                                         {
@@ -1512,23 +1512,10 @@ namespace ini
                 parse(input_stream);
         }
 
-        Configuration::Configuration(const Configuration &original)
-        {
-                // This copy constructor should not be used.
-                std::terminate();
-        }
-
         Configuration::~Configuration()
         {
                 // Delete all sections in this configuration.
                 std::for_each(sections.begin(), sections.end(), delete_section);
-        }
-
-        Configuration &Configuration::operator=(const Configuration &original)
-        {
-                // This copy-assignment operator should not be used.
-                std::terminate();
-                return *this;
         }
 
         void Configuration::delete_section(const SectionMap::value_type &section)
