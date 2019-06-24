@@ -151,7 +151,7 @@ namespace
 					if (std::isdigit(c))
 						getChar();
 				}
-				return value;
+				return sign * value;
 			}
 
 			double readDouble()
