@@ -1,7 +1,7 @@
 #include <fstream>
 
-#include <EasyImage.h>
-#include <ini_configuration.hh>
+#include "tools/EasyImage.h"
+#include "tools/ini_configuration.hh"
 
 img::EasyImage create_image(const ini::Configuration &config) {
     std::string type = config["General"]["type"].as_string_or_die();

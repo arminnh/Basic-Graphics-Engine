@@ -2,20 +2,22 @@ CXXFLAGS   = -Wall -Wextra -g3 -fstack-protector-all
 LDFLAGS    =
 EXECUTABLE = bin/engine
 EXTENSION  = cc
-SOURCES    = $(basename $(shell find . -name '*.$(EXTENSION)'))
+SOURCES    = $(shell find ./src/ -name '*.cc')
+OBJECTS    = $(SOURCES:.cc=.o)
+DEPFILES   = $(SOURCES:.cc=.d)
+
+allclean: all clean
 
 .PHONY: all
-all: $(EXECUTABLE)
+all: $(OBJECTS)
+	mkdir -p bin
+	$(CXX) $(LDFLAGS) $^ -o $(EXECUTABLE)
 
-$(EXECUTABLE): $(addsuffix .o,$(SOURCES))
-	$(CXX) $(LDFLAGS) $^ -o $@
-
+# create depfiles
 %.d: %.$(EXTENSION)
 	$(CXX) $(CXXFLAGS) -MM $< -o $@
-	echo sed -i 's/:/ $@:/' $@
-	printf '\t$$(CC) $$(CXXFLAGS) -c $$< -o $$@\n' >>$@
 
--include $(addsuffix .d,$(SOURCES))
+-include $(DEPFILES)
 
 .PHONY: clean
 clean:
