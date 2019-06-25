@@ -5,6 +5,7 @@
 
 #include "color_rectangle.h"
 #include "checkers_rectangle.h"
+#include "line_structures.h"
 
 img::EasyImage generate_image(const ini::Configuration &config)
 {
@@ -14,6 +15,8 @@ img::EasyImage generate_image(const ini::Configuration &config)
         return generate_color_rectangle(config);
     } else if (type == "IntroBlocks") {
         return generate_checkers_rectangle(config);
+    } else if (type == "IntroLines") {
+        return generate_line_structure(config);
     } else {
         std::cerr << "Unknown image type '" << type << "'." << std::endl;
         return img::EasyImage();
