@@ -8,13 +8,14 @@
 class LineStructure : public Image
 {
 protected:
+    const std::string structure_type;
     img::Color color_background;
     img::Color color_lines;
     const int nr_lines;
 
 public:
-    LineStructure(unsigned width, unsigned height, ini::DoubleTuple c_background, ini::DoubleTuple c_line, int nr_lines) 
-        : Image(width, height), nr_lines(nr_lines)
+    LineStructure(unsigned width, unsigned height, std::string type, ini::DoubleTuple c_background, ini::DoubleTuple c_line, int nr_lines)
+        : Image(width, height), structure_type(type), nr_lines(nr_lines)
     {
         this->color_background = tuple_to_color(c_background);
         this->color_lines = tuple_to_color(c_line);
@@ -22,14 +23,7 @@ public:
         this->img.clear(this->color_background);
     }
 
-    virtual img::EasyImage generate() = 0;
-};
-
-class QuarterCircle : public LineStructure
-{
-public:
-    QuarterCircle(unsigned width, unsigned height, ini::DoubleTuple c_background, ini::DoubleTuple c_line, int nr_lines) 
-        : LineStructure(width, height, c_background, c_line, nr_lines) {}
+    void draw_quarter_circle(const int x_from, const int y_from, const int x_to, const int y_to, const int x_corner, const int y_corner);
 
     img::EasyImage generate();
 };
