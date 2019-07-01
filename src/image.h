@@ -31,6 +31,8 @@ public:
     }
 
     virtual img::EasyImage generate() = 0;
+
+    img::EasyImage draw_2d_lines(Lines2D& lines, int size);
 };
 
 #endif

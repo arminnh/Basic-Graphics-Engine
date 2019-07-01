@@ -1,10 +1,38 @@
 #ifndef HEADER_UTIL
 #define HEADER_UTIL
 
+#include <list>
 #include <cmath>
 #include <iostream>
 #include "tools/EasyImage.h"
 #include "tools/ini_configuration.hh"
+
+class Point2D
+{
+public:
+	double x;
+	double y;
+
+	Point2D(double x, double y) : x(x), y(y) {};
+};
+
+class Line2D
+{
+public:
+	Point2D p1;
+	Point2D p2;
+	img::Color c = img::Color(255, 255, 255);
+
+	Line2D(Point2D p1, Point2D p2) : p1(p1), p2(p2) {};
+
+	Line2D(Point2D p1, Point2D p2, img::Color c) : p1(p1), p2(p2), c(c) {};
+
+	Line2D(double x1, double y1, double x2, double y2) : p1(Point2D(x1, y1)), p2(Point2D(x2, y2)) {};
+
+	Line2D(double x1, double y1, double x2, double y2, img::Color c) : p1(Point2D(x1, y1)), p2(Point2D(x2, y2)), c(c) {};
+};
+
+typedef std::list<Line2D> Lines2D;
 
 inline int round_to_int(double d)
 {

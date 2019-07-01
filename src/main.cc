@@ -3,6 +3,7 @@
 #include "tools/EasyImage.h"
 #include "tools/ini_configuration.hh"
 
+#include "image.h"
 #include "color_rectangle.h"
 #include "checkers_rectangle.h"
 #include "line_structures.h"
