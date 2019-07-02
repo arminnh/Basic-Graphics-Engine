@@ -1,7 +1,6 @@
-#include "image.h"
-#include <cmath>
+#include "util.h"
 
-img::EasyImage Image::draw_2d_lines(Lines2D& lines, int size)
+img::EasyImage draw_2d_lines(Lines2D& lines, int size)
 {
     // TODO: INT_MAX
     int x_min = 9999, x_max = 0, y_min = 9999, y_max = 0;
@@ -31,8 +30,9 @@ img::EasyImage Image::draw_2d_lines(Lines2D& lines, int size)
     double d_x = image_x / 2 - d_center_x;
     double d_y = image_y / 2 - d_center_y;
 
+	img::EasyImage img = img::EasyImage(size, size);
     for (Line2D line: lines) {
-        this->img.draw_line(
+        img.draw_line(
             round_to_int(d * line.p1.x + d_x),
             round_to_int(d * line.p1.y + d_y),
             round_to_int(d * line.p2.x + d_x),
@@ -41,5 +41,5 @@ img::EasyImage Image::draw_2d_lines(Lines2D& lines, int size)
         );
     }
 
-    return this->img;
+    return img;
 }

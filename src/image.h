@@ -12,11 +12,13 @@ protected:
     img::EasyImage img;
 
 public:
+    Image(unsigned size) : Image(size, size) {}
+
     Image(unsigned width, unsigned height)
         : w(width), h(height)
     {
         this->img = img::EasyImage(width, height);
-    };
+    }
 
     void color_pixel(unsigned x, unsigned y, img::Color c) {
         this->img(x, y).red = c.red;
@@ -31,8 +33,6 @@ public:
     }
 
     virtual img::EasyImage generate() = 0;
-
-    img::EasyImage draw_2d_lines(Lines2D& lines, int size);
 };
 
 #endif

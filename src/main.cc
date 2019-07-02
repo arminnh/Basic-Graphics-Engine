@@ -7,6 +7,7 @@
 #include "color_rectangle.h"
 #include "checkers_rectangle.h"
 #include "line_structures.h"
+#include "l_systems.h"
 
 img::EasyImage generate_image(const ini::Configuration &config)
 {
@@ -18,6 +19,8 @@ img::EasyImage generate_image(const ini::Configuration &config)
         return generate_checkers_rectangle(config);
     } else if (type == "IntroLines") {
         return generate_line_structure(config);
+    } else if (type == "2DLSystem") {
+        return generate_l_system_2d(config);
     } else {
         std::cerr << "Unknown image type '" << type << "'." << std::endl;
         return img::EasyImage();

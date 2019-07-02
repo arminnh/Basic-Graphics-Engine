@@ -58,4 +58,6 @@ inline img::Color tuple_to_color(ini::DoubleTuple tuple)
 	);
 }
 
+img::EasyImage draw_2d_lines(Lines2D& lines, int size);
+
 #endif
