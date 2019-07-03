@@ -1,5 +1,17 @@
 #include "util.h"
 
+std::ostream &operator<<(std::ostream &out, const Point2D &p)
+{
+	out << "(" << p.x << ", " << p.y << ")";
+	return out;
+}
+
+std::ostream &operator<<(std::ostream &out, const Line2D &l)
+{
+	out << l.p1 << ", " << l.p2;
+	return out;
+}
+
 img::EasyImage draw_2d_lines(Lines2D& lines, int size)
 {
     // TODO: INT_MAX
@@ -29,6 +41,17 @@ img::EasyImage draw_2d_lines(Lines2D& lines, int size)
 
     double d_x = image_x / 2 - d_center_x;
     double d_y = image_y / 2 - d_center_y;
+
+
+    for (Line2D line : lines) {
+        Line2D newline = Line2D(
+            round_to_int(d * line.p1.x + d_x),
+            round_to_int(d * line.p1.y + d_y),
+            round_to_int(d * line.p2.x + d_x),
+            round_to_int(d * line.p2.y + d_y)
+        );
+        std::cout << line << "->" << newline << std::endl;
+    }
 
 	img::EasyImage img = img::EasyImage(size, size);
     for (Line2D line: lines) {

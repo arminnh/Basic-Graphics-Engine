@@ -8,9 +8,33 @@ img::EasyImage LSystem2D::generate()
 {
     Lines2D lines;
 
-    std::set<char> const alphabet = this->lsystem.get_alphabet();
+    std::set<char> alphabet = this->lsystem.get_alphabet();
+    double current_angle = deg_to_rad(this->lsystem.get_starting_angle());
+    Point2D current_p = Point2D(0, 0);
+    std::string current_system = this->lsystem.get_initiator();
 
+    current_system = this->lsystem.get_replacement(current_system[0]);
 
+    for (char c : current_system) {
+        if (alphabet.count(c)) {
+            if (this->lsystem.draw(c)) {
+                double d_x = std::cos(current_angle);
+                double d_y = std::sin(current_angle);
+                Point2D next_p = Point2D(current_p.x + d_x, current_p.y + d_y);
+                lines.push_back(Line2D(current_p, next_p, this->color));
+                current_p = next_p;
+            }
+        } else if (c == '+') {
+            current_angle += deg_to_rad(90);
+        } else if (c == '-') {
+            current_angle -= deg_to_rad(90);
+        }
+    }
+
+    // std::cout << lines << std::endl;
+    for (Line2D line : lines) {
+        std::cout << line << std::endl;
+    }
 
     return draw_2d_lines(lines, this->size);
 }

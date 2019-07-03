@@ -14,6 +14,8 @@ public:
 	double y;
 
 	Point2D(double x, double y) : x(x), y(y) {};
+
+	friend std::ostream &operator<<(std::ostream &out, const Point2D &p);
 };
 
 class Line2D
@@ -30,6 +32,8 @@ public:
 	Line2D(double x1, double y1, double x2, double y2) : p1(Point2D(x1, y1)), p2(Point2D(x2, y2)) {};
 
 	Line2D(double x1, double y1, double x2, double y2, img::Color c) : p1(Point2D(x1, y1)), p2(Point2D(x2, y2)), c(c) {};
+
+	friend std::ostream &operator<<(std::ostream &out, const Line2D &l);
 };
 
 typedef std::list<Line2D> Lines2D;
