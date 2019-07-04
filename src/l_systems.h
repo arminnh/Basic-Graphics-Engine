@@ -29,6 +29,9 @@ public:
         : lsystem(lsystem), size(size), color_background(c_background), color(c) {}
 
     img::EasyImage generate();
+
+private:
+    std::string apply_rules(std::string sequence, int iterations);
 };
 
 img::EasyImage generate_l_system_2d(const ini::Configuration &config);
