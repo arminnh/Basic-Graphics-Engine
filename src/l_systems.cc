@@ -1,4 +1,7 @@
 #include <fstream>
+#include <stack>
+#include <tuple>
+
 #include "l_systems.h"
 #include "tools/ini_configuration.hh"
 #include "util.h"
@@ -6,7 +9,6 @@
 
 std::string LSystem2D::apply_rules(std::string sequence, int iterations)
 {
-    std::cout << "apply on '" << sequence << "' , " << iterations << std::endl;
     if (iterations == 0) {
         return sequence;
     }
@@ -33,7 +35,7 @@ img::EasyImage LSystem2D::generate()
     double current_angle = deg_to_rad(this->lsystem.get_starting_angle());
     Point2D current_p = Point2D(0, 0);
     std::string sequence = this->apply_rules(this->lsystem.get_initiator(), this->lsystem.get_nr_iterations());
-    std::cout << "sequence: " << sequence << std::endl;
+    std::stack<std::tuple<Point2D, double>> stack;
 
     for (char c : sequence) {
         if (alphabet.count(c)) {
@@ -48,6 +50,11 @@ img::EasyImage LSystem2D::generate()
             current_angle += deg_to_rad(this->lsystem.get_angle());
         } else if (c == '-') {
             current_angle -= deg_to_rad(this->lsystem.get_angle());
+        } else if (c == '(') {
+            stack.push(std::tuple<Point2D, double>(current_p, current_angle));
+        } else if (c == ')') {
+            std::tie(current_p, current_angle) = stack.top();
+            stack.pop();
         }
     }
 

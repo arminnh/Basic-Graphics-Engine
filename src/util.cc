@@ -32,8 +32,8 @@ img::EasyImage draw_2d_lines(Lines2D& lines, int size, img::Color c_background)
     double x_range = x_max - x_min;
     double y_range = y_max - y_min;
 
-    int image_x = round_to_int(size * x_range / std::max(x_range, y_range));
-    int image_y = round_to_int(size * y_range / std::max(x_range, y_range));
+    int image_x = std::max(30, round_to_int(size * x_range / std::max(x_range, y_range)));
+    int image_y = std::max(30, round_to_int(size * y_range / std::max(x_range, y_range)));
 
     double d = 0.95 * size / std::max(x_range, y_range);
 
@@ -42,7 +42,6 @@ img::EasyImage draw_2d_lines(Lines2D& lines, int size, img::Color c_background)
 
     double d_x = image_x / 2 - d_center_x;
     double d_y = image_y / 2 - d_center_y;
-
 
     std::cout << "x_min: " << x_min << ", x_max: " << x_max << ", y_min: "
         << y_min << ", y_max: " << y_max << std::endl << "x_range: " << x_range
@@ -59,6 +58,7 @@ img::EasyImage draw_2d_lines(Lines2D& lines, int size, img::Color c_background)
             round_to_int(d * line.p2.y + d_y)
         );
         // std::cout << line << "->" << new_line << std::endl;
+
         try {
             img.draw_line(
                 round_to_int(d * line.p1.x + d_x),
