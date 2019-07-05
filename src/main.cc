@@ -8,6 +8,7 @@
 #include "checkers_rectangle.h"
 #include "line_structures.h"
 #include "l_systems.h"
+#include "wireframes.h"
 
 img::EasyImage generate_image(const ini::Configuration &config)
 {
@@ -21,18 +22,12 @@ img::EasyImage generate_image(const ini::Configuration &config)
         return generate_line_structure(config);
     } else if (type == "2DLSystem") {
         return generate_l_system_2d(config);
+    } else if (type == "Wireframe") {
+        return generate_wireframe_drawing(config);
     } else {
         std::cerr << "Unknown image type '" << type << "'." << std::endl;
         return img::EasyImage();
     }
-    // if (type == "2DLSystem") {
-    //     return create_2DL_image(config);
-    // } else if (type == "Wireframe") {
-    //     return create_wireframe_image(config);
-    // }  else if (type == "ZBufferedWireframe") {
-    //     return create_zbuffered_wireframe_image(config);
-    // } else if (type == "ZBuffering") {
-    //     return create_zbuffered_image(config);
 }
 
 int main(int argc, char const* argv[])

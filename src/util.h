@@ -6,6 +6,7 @@
 #include <iostream>
 #include "tools/EasyImage.h"
 #include "tools/ini_configuration.hh"
+#include "tools/vector.hh"
 
 class Point2D
 {
@@ -60,6 +61,11 @@ inline img::Color tuple_to_color(ini::DoubleTuple tuple)
 		round_to_int(255.0 * tuple[1]),
 		round_to_int(255.0 * tuple[2])
 	);
+}
+
+inline Vector3D tuple_to_vector(ini::DoubleTuple tuple)
+{
+	return Vector3D::point(tuple[0], tuple[1], tuple[2]);
 }
 
 img::EasyImage draw_2d_lines(Lines2D& lines, int size, img::Color);
