@@ -57,7 +57,7 @@ img::EasyImage draw_2d_lines(Lines2D& lines, int size, img::Color c_background)
             round_to_int(d * line.p2.x + d_x),
             round_to_int(d * line.p2.y + d_y)
         );
-        // std::cout << line << "->" << new_line << std::endl;
+        std::cout << line << "->" << new_line << std::endl;
 
         try {
             img.draw_line(

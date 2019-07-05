@@ -18,6 +18,22 @@ LineDrawing::LineDrawing(ini::Section &config) : Figure(config)
     }
 }
 
+Lines2D LineDrawing::project(const Vector3D &eye_point, double d) const
+{
+    Lines2D lines;
+
+    std::map<int, Point2D> projected_points = this->project_points(d);
+
+    int p1_i, p2_i;
+    for (std::tuple<int, int> point_indexes : this->lines) {
+        std::tie(p1_i, p2_i) = point_indexes;
+
+        lines.push_back(Line2D(projected_points.at(p1_i), projected_points.at(p2_i)));
+    }
+
+    return lines;
+}
+
 const std::string LineDrawing::to_string() const
 {
     std::ostringstream s;
@@ -25,8 +41,10 @@ const std::string LineDrawing::to_string() const
 
     s << ",\nlines: [" << std::endl;
 
+    int i = 0;
     for (auto l: this->lines) {
-        s << std::get<0>(l) << " -> " << std::get<0>(l) << ", ";
+        s << "Line " << i << ": (" << std::get<0>(l) << " -> " << std::get<1>(l) << "), ";
+        i++;
     }
 
     s << "]}";

@@ -33,10 +33,15 @@ public:
 
     img::Color color;
 
-    Lines2D project();
+    void apply_transformation(const Matrix &m);
+
+    virtual Lines2D project(const Vector3D &eye_point, double d) const;
 
     virtual const std::string to_string() const;
     friend std::ostream &operator<<(std::ostream &o, const Figure &f);
+
+protected:
+    const std::map<int, Point2D> project_points(double d) const;
 };
 
 typedef std::list<Figure> Figures;

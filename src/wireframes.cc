@@ -7,7 +7,7 @@ img::EasyImage generate_wireframe_drawing(const ini::Configuration &config)
     const int size = config["General"]["size"].as_int_or_die();
     const ini::DoubleTuple c_background = config["General"]["backgroundcolor"].as_double_tuple_or_die();
     const int nr_figures = config["General"]["nrFigures"].as_int_or_die();
-    const ini::DoubleTuple eye = config["General"]["eye"].as_double_tuple_or_die();
+    const Vector3D eye_point = tuple_to_vector(config["General"]["eye"].as_double_tuple_or_die());
 
     Lines2D lines;
     Figure *figure;
@@ -32,13 +32,15 @@ img::EasyImage generate_wireframe_drawing(const ini::Configuration &config)
 
         if (figure != nullptr) {
             std::cout << figure->to_string() << std::endl;
-            std::cout << figure->project().size() << std::endl;
 
             // transformation operations on figure
 
             // collect 2D lines
-            for (Line2D line : figure->project()) {
+            int i = 0;
+            for (Line2D line : figure->project(eye_point, 1)) {
                 lines.push_back(line);
+                std::cout << "Line " << i << ": " << line << std::endl;
+                i++;
             }
             std::cout << "Added lines" << std::endl;
         }

@@ -17,6 +17,8 @@ public:
 
     LineDrawing(ini::Section &config);
 
+    Lines2D project(const Vector3D &eye_point, double d) const;
+
     const std::string to_string() const;
     friend std::ostream &operator<<(std::ostream &o, const LineDrawing &ld);
 };
