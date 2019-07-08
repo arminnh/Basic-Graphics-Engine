@@ -5,10 +5,6 @@ using namespace std;
 
 Point2D project_point(Vector3D point, double d)
 {
-    if (point.z == 0) {
-        std::cerr <<"handle point.z == 0" << std::endl;
-        return Point2D(10, 10);
-    }
     return Point2D(
         d * point.x / -point.z,
         d * point.y / -point.z
@@ -18,7 +14,7 @@ Point2D project_point(Vector3D point, double d)
 Vector3D cartesian_to_polar(const Vector3D p)
 {
     double r = sqrt(pow(p.x, 2) + pow(p.y, 2) + pow(p.z, 2));
-    double theta = atan(p.y / p.x);
+    double theta = atan2(p.y, p.x);
     double phi = acos(p.z / r);
     return Vector3D::point(r, theta, phi);
 }
