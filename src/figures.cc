@@ -15,8 +15,8 @@ Figure::Figure(ini::Section &config)
 
 void Figure::apply_transformation(const Matrix &m)
 {
-    for (Vector3D p : this->points) {
-        p = p * m;
+    for (int i = 0; i < this->points.size(); i++) {
+        this->points.at(i) = this->points.at(i) * m;
     }
 }
 

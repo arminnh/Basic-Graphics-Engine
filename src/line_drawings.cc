@@ -28,7 +28,7 @@ Lines2D LineDrawing::project(const Vector3D &eye_point, double d) const
     for (std::tuple<int, int> point_indexes : this->lines) {
         std::tie(p1_i, p2_i) = point_indexes;
 
-        lines.push_back(Line2D(projected_points.at(p1_i), projected_points.at(p2_i)));
+        lines.push_back(Line2D(projected_points.at(p1_i), projected_points.at(p2_i), this->color));
     }
 
     return lines;

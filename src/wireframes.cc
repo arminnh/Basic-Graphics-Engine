@@ -1,3 +1,4 @@
+#include "matrices.h"
 #include "wireframes.h"
 #include "line_drawings.h"
 #include <exception>
@@ -34,6 +35,7 @@ img::EasyImage generate_wireframe_drawing(const ini::Configuration &config)
             std::cout << figure->to_string() << std::endl;
 
             // transformation operations on figure
+            figure->apply_transformation(get_eye_point_transformation_matrix(eye_point));
 
             // collect 2D lines
             int i = 0;

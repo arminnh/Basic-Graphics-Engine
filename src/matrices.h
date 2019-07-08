@@ -9,7 +9,7 @@ Point2D project_point(Vector3D point, double d);
 
 inline Vector3D cartesian_to_polar(const Vector3D p);
 
-Matrix get_eye_point_transformation_matrix(Vector3D eye);
+const Matrix get_eye_point_transformation_matrix(const Vector3D eye_point_cartesian);
 
 Matrix scale(Matrix m, double s);
 

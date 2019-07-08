@@ -23,8 +23,13 @@ Vector3D cartesian_to_polar(const Vector3D p)
     return Vector3D::point(r, theta, phi);
 }
 
-Matrix get_eye_point_transformation_matrix(const double theta, const double phi, const double r)
+const Matrix get_eye_point_transformation_matrix(const Vector3D eye_point_cartesian)
 {
+    Vector3D eye_point_polar = cartesian_to_polar(eye_point_cartesian);
+    const double r = eye_point_polar.x;
+    const double theta = eye_point_polar.y;
+    const double phi = eye_point_polar.z;
+
     Matrix m = Matrix();
 
     m(1, 1) = -sin(theta);
