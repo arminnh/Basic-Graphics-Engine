@@ -13,7 +13,11 @@
 class Isocahedron : public Figure
 {
 public:
-    Isocahedron(ini::Section &config);
+    Isocahedron(ini::Section &config)
+        : Figure(config)
+    {
+
+    }
 };
 
 #endif

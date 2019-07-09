@@ -13,7 +13,11 @@
 class LSystem3D : public Figure
 {
 public:
-    LSystem3D(ini::Section &config);
+    LSystem3D(ini::Section &config)
+        : Figure(config)
+    {
+
+    }
 };
 
 #endif

@@ -13,7 +13,11 @@
 class Dodecahedron : public Figure
 {
 public:
-    Dodecahedron(ini::Section &config);
+    Dodecahedron(ini::Section &config)
+        : Figure(config)
+    {
+
+    }
 };
 
 #endif

@@ -13,7 +13,14 @@
 class Torus : public Figure
 {
 public:
-    Torus(ini::Section &config);
+    Torus(ini::Section &config)
+        : Figure(config)
+    {
+        const double r_middle = config["R"].as_double_or_die();
+        const double r_torus = config["r"].as_double_or_die();
+        const int n = config["n"].as_int_or_die();
+        const int m = config["m"].as_int_or_die();
+    }
 };
 
 #endif

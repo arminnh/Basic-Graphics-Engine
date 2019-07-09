@@ -13,7 +13,11 @@
 class Tetrahedron : public Figure
 {
 public:
-    Tetrahedron(ini::Section &config);
+    Tetrahedron(ini::Section &config)
+        : Figure(config)
+    {
+
+    }
 };
 
 #endif

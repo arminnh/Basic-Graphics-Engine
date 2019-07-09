@@ -13,7 +13,11 @@
 class Octahedron : public Figure
 {
 public:
-    Octahedron(ini::Section &config);
+    Octahedron(ini::Section &config)
+        : Figure(config)
+    {
+
+    }
 };
 
 #endif

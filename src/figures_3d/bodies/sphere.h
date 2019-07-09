@@ -13,7 +13,11 @@
 class Sphere : public Figure
 {
 public:
-    Sphere(ini::Section &config);
+    Sphere(ini::Section &config)
+        : Figure(config)
+    {
+        const int n = config["n"].as_int_or_die();
+    }
 };
 
 #endif

@@ -13,7 +13,11 @@
 class Cube : public Figure
 {
 public:
-    Cube(ini::Section &config);
+    Cube(ini::Section &config)
+        : Figure(config)
+    {
+
+    }
 };
 
 #endif
