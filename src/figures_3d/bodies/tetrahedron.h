@@ -16,7 +16,15 @@ public:
     Tetrahedron(ini::Section &config)
         : Figure(config)
     {
+        this->points.push_back(Vector3D::point(1, -1, -1));
+        this->points.push_back(Vector3D::point(-1, 1, -1));
+        this->points.push_back(Vector3D::point(1, 1, 1));
+        this->points.push_back(Vector3D::point(-1, -1, 1));
 
+        this->faces.push_back(Face(std::vector<int>{0, 1, 2}));
+        this->faces.push_back(Face(std::vector<int>{0, 1, 3}));
+        this->faces.push_back(Face(std::vector<int>{0, 2, 3}));
+        this->faces.push_back(Face(std::vector<int>{1, 2, 3}));
     }
 };
 
