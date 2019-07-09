@@ -14,6 +14,8 @@ class Face
 public:
     std::vector<int> point_indexes;
 
+    Face(std::vector<int> index_list) : point_indexes(index_list) {}
+
     const std::string to_string() const;
     friend std::ostream &operator<<(std::ostream &o, const Face &f);
 };
@@ -44,7 +46,5 @@ public:
 protected:
     const std::map<int, Point2D> project_points(double d) const;
 };
-
-typedef std::list<Figure> Figures;
 
 #endif
