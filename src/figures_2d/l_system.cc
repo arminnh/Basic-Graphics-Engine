@@ -2,10 +2,10 @@
 #include <stack>
 #include <tuple>
 
-#include "l_systems.h"
-#include "tools/ini_configuration.hh"
-#include "util.h"
-#include "image.h"
+#include "../tools/ini_configuration.hh"
+
+#include "l_system.h"
+#include "../util.h"
 
 std::string LSystem2D::apply_rules(std::string sequence, int iterations)
 {
@@ -58,15 +58,10 @@ img::EasyImage LSystem2D::generate()
         }
     }
 
-    // std::cout << lines << std::endl;
-    // for (Line2D line : lines) {
-    //     std::cout << line << std::endl;
-    // }
-
     return draw_2d_lines(lines, this->size, this->color_background);
 }
 
-img::EasyImage generate_l_system_2d(const ini::Configuration &config)
+img::EasyImage generate_l_system_2d_image(const ini::Configuration &config)
 {
     const int size = config["General"]["size"].as_int_or_die();
     const ini::DoubleTuple c_background = config["General"]["backgroundcolor"].as_double_tuple_or_die();

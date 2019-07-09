@@ -17,4 +17,6 @@ all: $(OBJECTS)
 
 .PHONY: clean
 clean:
-	$(RM) $(OBJECTS) $(DEPFILES) $(EXECUTABLE)
+	find -name *.o -delete
+	find -name *.d -delete
+	find -name $(EXECUTABLE) -delete

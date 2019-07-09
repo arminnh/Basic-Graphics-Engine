@@ -1,8 +1,9 @@
 #ifndef HEADER_IMAGE
 #define HEADER_IMAGE
 
-#include "tools/EasyImage.h"
-#include "util.h"
+#include "../../tools/EasyImage.h"
+
+#include "../../util.h"
 
 class Image
 {

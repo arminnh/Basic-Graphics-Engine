@@ -1,8 +1,9 @@
 #include <sstream>
 
-#include "figures.h"
-#include "tools/ini_configuration.hh"
-#include "matrices.h"
+#include "../tools/ini_configuration.hh"
+
+#include "figure.h"
+#include "../matrices.h"
 
 Figure::Figure(ini::Section &config)
 {
@@ -36,7 +37,7 @@ const std::map<int, Point2D> Figure::project_points(double d) const
 
 Lines2D Figure::project(const Vector3D &eye_point, double d) const
 {
-    std::cerr << "Figure::project()" << std::endl;
+    std::cerr << "TODO: Figure::project()" << std::endl;
 
     Lines2D lines;
 

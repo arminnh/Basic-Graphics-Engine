@@ -1,4 +1,4 @@
-#include "line_structures.h"
+#include "quarter_circle_structures.h"
 
 void LineStructure::draw_quarter_circle(const int x_from, const int y_from, const int x_to, const int y_to, const int x_corner, const int y_corner)
 {
@@ -55,7 +55,7 @@ img::EasyImage LineStructure::generate()
     return this->img;
 }
 
-img::EasyImage generate_line_structure(const ini::Configuration &config)
+img::EasyImage generate_quarter_circle_structure_image(const ini::Configuration &config)
 {
     const std::string structure_type = config["LineProperties"]["figure"].as_string_or_die();
     const int width = config["ImageProperties"]["width"].as_int_or_die();

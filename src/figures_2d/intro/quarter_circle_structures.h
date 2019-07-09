@@ -1,8 +1,9 @@
 #ifndef HEADER_LINE_STRUCTURE
 #define HEADER_LINE_STRUCTURE
 
-#include "tools/EasyImage.h"
-#include "tools/ini_configuration.hh"
+#include "../../tools/EasyImage.h"
+#include "../../tools/ini_configuration.hh"
+
 #include "image.h"
 
 class LineStructure : public Image
@@ -28,6 +29,6 @@ public:
     img::EasyImage generate();
 };
 
-img::EasyImage generate_line_structure(const ini::Configuration &config);
+img::EasyImage generate_quarter_circle_structure_image(const ini::Configuration &config);
 
 #endif

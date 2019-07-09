@@ -1,9 +1,20 @@
-#include "matrices.h"
-#include "wireframes.h"
-#include "line_drawings.h"
 #include <exception>
 
-img::EasyImage generate_wireframe_drawing(const ini::Configuration &config)
+#include "wireframes.h"
+#include "line_drawings.h"
+#include "bodies/cone.h"
+#include "bodies/cube.h"
+#include "bodies/cylinder.h"
+#include "bodies/dodecahedron.h"
+#include "bodies/isocahedron.h"
+#include "bodies/l_system_3d.h"
+#include "bodies/octahedron.h"
+#include "bodies/sphere.h"
+#include "bodies/tetrahedron.h"
+#include "bodies/torus.h"
+#include "../matrices.h"
+
+img::EasyImage generate_wireframe_image(const ini::Configuration &config)
 {
     const int size = config["General"]["size"].as_int_or_die();
     const ini::DoubleTuple c_background = config["General"]["backgroundcolor"].as_double_tuple_or_die();
@@ -26,6 +37,26 @@ img::EasyImage generate_wireframe_drawing(const ini::Configuration &config)
         std::cout << "Loading figure " << fig_nr << std::endl;
         if (figure_type == "LineDrawing") {
             figure = new LineDrawing(fig_config);
+        } else if (figure_type == "Cube") {
+            figure = new Cube(fig_config);
+        } else if (figure_type == "Tetrahedron") {
+            figure = new Tetrahedron(fig_config);
+        } else if (figure_type == "Octahedron") {
+            figure = new Octahedron(fig_config);
+        } else if (figure_type == "Isocahedron") {
+            figure = new Isocahedron(fig_config);
+        } else if (figure_type == "Dodecahedron") {
+            figure = new Dodecahedron(fig_config);
+        } else if (figure_type == "Cylinder") {
+            figure = new Cylinder(fig_config);
+        } else if (figure_type == "Cone") {
+            figure = new Cone(fig_config);
+        } else if (figure_type == "Sphere") {
+            figure = new Sphere(fig_config);
+        } else if (figure_type == "Torus") {
+            figure = new Torus(fig_config);
+        } else if (figure_type == "3DLSystemw") {
+            figure = new LSystem3D(fig_config);
         } else {
             std::cerr << "Unreconized figure type '" + figure_type + "'" << std::endl;
             // throw exception("Unreconized figure type '" + figure_type + "'");
@@ -36,7 +67,9 @@ img::EasyImage generate_wireframe_drawing(const ini::Configuration &config)
                 std::cout << figure->to_string() << std::endl;
             }
 
-            Matrix all_transformations = get_all_transformations_matrix(eye_point, center, rotate_x_degrees, rotate_y_degrees, rotate_z_degrees, scale);
+            Matrix all_transformations = get_all_transformations_matrix(
+                eye_point, center, rotate_x_degrees, rotate_y_degrees, rotate_z_degrees, scale
+            );
             figure->apply_transformation(all_transformations);
 
             // collect 2D lines

@@ -4,11 +4,11 @@
 #include <tuple>
 #include <vector>
 
-#include "tools/EasyImage.h"
-#include "tools/ini_configuration.hh"
+#include "../tools/EasyImage.h"
+#include "../tools/ini_configuration.hh"
 
-#include "util.h"
-#include "figures.h"
+#include "../util.h"
+#include "figure.h"
 
 class LineDrawing : public Figure
 {

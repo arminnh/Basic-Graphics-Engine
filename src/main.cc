@@ -3,27 +3,26 @@
 #include "tools/EasyImage.h"
 #include "tools/ini_configuration.hh"
 
-#include "image.h"
-#include "color_rectangle.h"
-#include "checkers_rectangle.h"
-#include "line_structures.h"
-#include "l_systems.h"
-#include "wireframes.h"
+#include "figures_2d/intro/color_rectangle.h"
+#include "figures_2d/intro/checkers_rectangle.h"
+#include "figures_2d/intro/quarter_circle_structures.h"
+#include "figures_2d/l_system.h"
+#include "figures_3d/wireframes.h"
 
 img::EasyImage generate_image(const ini::Configuration &config)
 {
     std::string type = config["General"]["type"].as_string_or_die();
 
     if (type == "IntroColorRectangle") {
-        return generate_color_rectangle(config);
+        return generate_color_rectangle_image(config);
     } else if (type == "IntroBlocks") {
-        return generate_checkers_rectangle(config);
+        return generate_checkers_rectangle_image(config);
     } else if (type == "IntroLines") {
-        return generate_line_structure(config);
+        return generate_quarter_circle_structure_image(config);
     } else if (type == "2DLSystem") {
-        return generate_l_system_2d(config);
+        return generate_l_system_2d_image(config);
     } else if (type == "Wireframe") {
-        return generate_wireframe_drawing(config);
+        return generate_wireframe_image(config);
     } else {
         std::cerr << "Unknown image type '" << type << "'." << std::endl;
         return img::EasyImage();

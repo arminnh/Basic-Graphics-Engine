@@ -3,6 +3,6 @@
 
 #include "line_drawings.h"
 
-img::EasyImage generate_wireframe_drawing(const ini::Configuration &config);
+img::EasyImage generate_wireframe_image(const ini::Configuration &config);
 
 #endif

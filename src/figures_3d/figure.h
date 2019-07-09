@@ -4,9 +4,10 @@
 #include <list>
 #include <vector>
 
-#include "tools/vector.hh"
-#include "tools/EasyImage.h"
-#include "util.h"
+#include "../tools/vector.hh"
+#include "../tools/EasyImage.h"
+
+#include "../util.h"
 
 class Face
 {

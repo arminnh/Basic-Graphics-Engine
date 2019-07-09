@@ -1,5 +1,5 @@
 #include "checkers_rectangle.h"
-#include "util.h"
+#include "../../util.h"
 
 img::EasyImage CheckersRectangle::generate()
 {
@@ -24,7 +24,7 @@ img::EasyImage CheckersRectangle::generate()
     return this->img;
 }
 
-img::EasyImage generate_checkers_rectangle(const ini::Configuration &config)
+img::EasyImage generate_checkers_rectangle_image(const ini::Configuration &config)
 {
     CheckersRectangle cr = CheckersRectangle(
         config["ImageProperties"]["width"].as_int_or_die(),

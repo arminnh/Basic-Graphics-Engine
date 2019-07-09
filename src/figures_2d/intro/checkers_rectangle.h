@@ -1,8 +1,9 @@
 #ifndef HEADER_CHECKERS_RECTANGLE
 #define HEADER_CHECKERS_RECTANGLE
 
+#include "../../tools/ini_configuration.hh"
+
 #include "image.h"
-#include "tools/ini_configuration.hh"
 
 class CheckersRectangle : public Image
 {
@@ -27,6 +28,6 @@ public:
     img::EasyImage generate();
 };
 
-img::EasyImage generate_checkers_rectangle(const ini::Configuration &config);
+img::EasyImage generate_checkers_rectangle_image(const ini::Configuration &config);
 
 #endif

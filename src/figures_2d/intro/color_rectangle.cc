@@ -1,5 +1,5 @@
 #include "color_rectangle.h"
-#include "util.h"
+#include "../../util.h"
 
 img::EasyImage ColorRectangle::generate()
 {
@@ -17,7 +17,7 @@ img::EasyImage ColorRectangle::generate()
     return this->img;
 }
 
-img::EasyImage generate_color_rectangle(const ini::Configuration &config)
+img::EasyImage generate_color_rectangle_image(const ini::Configuration &config)
 {
     ColorRectangle cr = ColorRectangle(
         config["ImageProperties"]["width"].as_int_or_die(),
