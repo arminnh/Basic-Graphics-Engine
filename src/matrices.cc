@@ -101,7 +101,7 @@ const Matrix get_translation_matrix(Vector3D v)
 
 const Matrix get_all_transformations_matrix(const Vector3D eye_point, const Vector3D center, const double rotate_x_degrees, const double rotate_y_degrees, const double rotate_z_degrees, const double scale)
 {
-    Matrix m = get_translation_matrix(-center);
+    Matrix m = get_translation_matrix(center);
     m = m * get_rotation_matrix(
         deg_to_rad(rotate_x_degrees),
         deg_to_rad(rotate_y_degrees),
