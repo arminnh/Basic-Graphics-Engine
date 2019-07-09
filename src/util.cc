@@ -43,11 +43,13 @@ img::EasyImage draw_2d_lines(Lines2D& lines, int size, img::Color c_background)
     double d_x = image_x / 2 - d_center_x;
     double d_y = image_y / 2 - d_center_y;
 
-    std::cout << "x_min: " << x_min << ", x_max: " << x_max << ", y_min: "
-        << y_min << ", y_max: " << y_max << std::endl << "x_range: " << x_range
-        << ", y_range: " << y_range << ", image_x: " << image_x << ", image_y: "
-        << image_y << std::endl << "d: " << d << ", d_center_x: " << d_center_x << ", d_center_y: " << d_center_y
-        << ", d_x: " << d_x << ", d_y: " << d_y << std::endl;
+    if (VERBOSE) {
+        std::cout << "x_min: " << x_min << ", x_max: " << x_max << ", y_min: "
+            << y_min << ", y_max: " << y_max << std::endl << "x_range: " << x_range
+            << ", y_range: " << y_range << ", image_x: " << image_x << ", image_y: "
+            << image_y << std::endl << "d: " << d << ", d_center_x: " << d_center_x << ", d_center_y: " << d_center_y
+            << ", d_x: " << d_x << ", d_y: " << d_y << std::endl;
+    }
 
 	img::EasyImage img = img::EasyImage(image_x, image_y, c_background);
     for (Line2D line: lines) {
@@ -57,7 +59,10 @@ img::EasyImage draw_2d_lines(Lines2D& lines, int size, img::Color c_background)
             round_to_int(d * line.p2.x + d_x),
             round_to_int(d * line.p2.y + d_y)
         );
-        std::cout << line << "->" << new_line << std::endl;
+
+        if (VERBOSE) {
+            std::cout << line << "->" << new_line << std::endl;
+        }
 
         try {
             img.draw_line(

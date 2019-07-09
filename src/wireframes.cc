@@ -14,14 +14,14 @@ img::EasyImage generate_wireframe_drawing(const ini::Configuration &config)
     Figure *figure;
 
     for (int fig_nr = 0; fig_nr < nr_figures; fig_nr++) {
+        figure = nullptr;
         ini::Section fig_config = config["Figure" + std::to_string(fig_nr)];
         const std::string figure_type = fig_config["type"].as_string_or_die();
+        Vector3D center = tuple_to_vector(fig_config["center"].as_double_tuple_or_die());
         const double rotate_x_degrees = fig_config["rotateX"].as_double_or_die();
         const double rotate_y_degrees = fig_config["rotateY"].as_double_or_die();
         const double rotate_z_degrees = fig_config["rotateZ"].as_double_or_die();
         const double scale = fig_config["scale"].as_double_or_die();
-
-        figure = nullptr;
 
         std::cout << "Loading figure " << fig_nr << std::endl;
         if (figure_type == "LineDrawing") {
@@ -32,19 +32,23 @@ img::EasyImage generate_wireframe_drawing(const ini::Configuration &config)
         }
 
         if (figure != nullptr) {
-            std::cout << figure->to_string() << std::endl;
+            if (VERBOSE) {
+                std::cout << figure->to_string() << std::endl;
+            }
 
-            // transformation operations on figure
-            figure->apply_transformation(get_eye_point_transformation_matrix(eye_point));
+            Matrix all_transformations = get_all_transformations_matrix(eye_point, center, rotate_x_degrees, rotate_y_degrees, rotate_z_degrees, scale);
+            figure->apply_transformation(all_transformations);
 
             // collect 2D lines
             int i = 0;
             for (Line2D line : figure->project(eye_point, 1)) {
                 lines.push_back(line);
-                std::cout << "Line " << i << ": " << line << std::endl;
+                if (VERBOSE) {
+                    std::cout << "Line " << i << ": " << line << std::endl;
+                }
                 i++;
             }
-            std::cout << "Added lines" << std::endl;
+            std::cout << "Added lines for figure " << fig_nr << std::endl;
         }
 
     }

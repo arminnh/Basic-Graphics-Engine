@@ -8,6 +8,8 @@
 #include "tools/ini_configuration.hh"
 #include "tools/vector.hh"
 
+const bool VERBOSE = false;
+
 class Point2D
 {
 public:
