@@ -7,6 +7,9 @@
 
 Figure::Figure(ini::Section &config)
 {
+    if (VERBOSE) {
+        std::cout << "Figure init for type '" << config["type"].as_string_or_die() << "'" << std::endl;
+    }
     ini::DoubleTuple center = config["center"].as_double_tuple_or_die();
     ini::DoubleTuple color = config["color"].as_double_tuple_or_die();
 
