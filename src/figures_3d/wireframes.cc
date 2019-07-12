@@ -6,7 +6,7 @@
 #include "bodies/cube.h"
 #include "bodies/cylinder.h"
 #include "bodies/dodecahedron.h"
-#include "bodies/isocahedron.h"
+#include "bodies/icosahedron.h"
 #include "bodies/l_system_3d.h"
 #include "bodies/octahedron.h"
 #include "bodies/sphere.h"
@@ -44,7 +44,7 @@ img::EasyImage generate_wireframe_image(const ini::Configuration &config)
         } else if (figure_type == "Octahedron") {
             figure = new Octahedron(fig_config);
         } else if (figure_type == "Isocahedron") {
-            figure = new Isocahedron(fig_config);
+            figure = new Icosahedron(fig_config);
         } else if (figure_type == "Dodecahedron") {
             figure = new Dodecahedron(fig_config);
         } else if (figure_type == "Cylinder") {

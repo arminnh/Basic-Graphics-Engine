@@ -10,10 +10,10 @@
 #include "../../util.h"
 #include "../figure.h"
 
-class Isocahedron : public Figure
+class Icosahedron : public Figure
 {
 public:
-    Isocahedron(ini::Section &config)
+    Icosahedron(ini::Section &config)
         : Figure(config)
     {
 
