@@ -8,7 +8,9 @@
 #include "tools/ini_configuration.hh"
 #include "tools/vector.hh"
 
-const bool VERBOSE = true;
+#define VERBOSE true
+#define M_PHI 1.6180339887
+#define M_GOLDEN_RATIO M_PHI
 
 class Point2D
 {
