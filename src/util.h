@@ -72,6 +72,6 @@ inline Vector3D tuple_to_vector(ini::DoubleTuple tuple)
 	return Vector3D::point(tuple[0], tuple[1], tuple[2]);
 }
 
-img::EasyImage draw_2d_lines(Lines2D& lines, int size, img::Color);
+img::EasyImage draw_2d_lines(const Lines2D& lines, const int size, const img::Color);
 
 #endif
