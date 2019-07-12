@@ -74,7 +74,7 @@ img::EasyImage generate_wireframe_image(const ini::Configuration &config)
 
             // collect 2D lines
             int i = 0;
-            for (Line2D line : figure->project(eye_point, 1)) {
+            for (Line2D line : figure->project(1)) {
                 lines.push_back(line);
                 if (VERBOSE) {
                     std::cout << "Line " << i << ": " << line << std::endl;

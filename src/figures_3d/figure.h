@@ -38,7 +38,7 @@ public:
 
     void apply_transformation(const Matrix &m);
 
-    virtual Lines2D project(const Vector3D &eye_point, double d) const;
+    virtual Lines2D project(double d) const;
 
     virtual const std::string to_string() const;
     friend std::ostream &operator<<(std::ostream &o, const Figure &f);

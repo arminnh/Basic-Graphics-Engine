@@ -19,7 +19,7 @@ Figure::Figure(ini::Section &config)
 
 void Figure::apply_transformation(const Matrix &m)
 {
-    for (int i = 0; i < this->points.size(); i++) {
+    for (unsigned int i = 0; i < this->points.size(); i++) {
         this->points.at(i) = this->points.at(i) * m;
     }
 }
@@ -37,7 +37,7 @@ const std::map<int, Point2D> Figure::project_points(double d) const
     return projected_points;
 }
 
-Lines2D Figure::project(const Vector3D &eye_point, double d) const
+Lines2D Figure::project(double d) const
 {
     Lines2D lines;
 
@@ -45,7 +45,7 @@ Lines2D Figure::project(const Vector3D &eye_point, double d) const
     std::map<int, Point2D> projected_points = this->project_points(d);
 
     for (Face face : this->faces) {
-        for (int i = 1; i < face.point_indexes.size(); i++) {
+        for (unsigned int i = 1; i < face.point_indexes.size(); i++) {
             lines.push_back(Line2D(
                 projected_points.at(face.point_indexes.at(i - 1)),
                 projected_points.at(face.point_indexes.at(i)),

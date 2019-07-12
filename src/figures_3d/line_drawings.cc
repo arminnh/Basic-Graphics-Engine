@@ -18,7 +18,7 @@ LineDrawing::LineDrawing(ini::Section &config) : Figure(config)
     }
 }
 
-Lines2D LineDrawing::project(const Vector3D &eye_point, double d) const
+Lines2D LineDrawing::project(double d) const
 {
     Lines2D lines;
 

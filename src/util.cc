@@ -63,7 +63,9 @@ img::EasyImage draw_2d_lines(const Lines2D& lines, const int size, const img::Co
             std::cout << old_line << "->" << line << std::endl;
         }
 
-        if (0 <= line.p1.x < image_x && 0 <= line.p1.y < image_y && 0 <= line.p2.x < image_x && 0 <= line.p2.y < image_y) {
+        if (0 <= line.p1.x && line.p1.x < image_x && 0 <= line.p1.y && line.p1.y < image_y
+            &&  0 <= line.p2.x && line.p2.x < image_x &&  0 <= line.p2.y && line.p2.y < image_y) {
+
             img.draw_line(line.p1.x, line.p1.y, line.p2.x, line.p2.y, line.c);
         } else {
             std::cerr << "Cannot draw line " << line << std::endl;

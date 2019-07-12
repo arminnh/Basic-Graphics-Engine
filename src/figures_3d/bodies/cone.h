@@ -28,7 +28,7 @@ public:
         // add top point of the cone
         this->points.push_back(Vector3D::point(0, 0, height));
 
-        for (int i = 1; i < this->points.size(); i++) {
+        for (int i = 1; i < (int) this->points.size(); i++) {
             this->faces.push_back(Face(std::vector<int>{i, n + 1, i - 1}));
         }
     }
