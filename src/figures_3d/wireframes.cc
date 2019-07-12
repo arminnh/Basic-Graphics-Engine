@@ -43,7 +43,7 @@ img::EasyImage generate_wireframe_image(const ini::Configuration &config)
             figure = new Tetrahedron(fig_config);
         } else if (figure_type == "Octahedron") {
             figure = new Octahedron(fig_config);
-        } else if (figure_type == "Isocahedron") {
+        } else if (figure_type == "Icosahedron") {
             figure = new Icosahedron(fig_config);
         } else if (figure_type == "Dodecahedron") {
             figure = new Dodecahedron(fig_config);
@@ -55,7 +55,7 @@ img::EasyImage generate_wireframe_image(const ini::Configuration &config)
             figure = new Sphere(fig_config);
         } else if (figure_type == "Torus") {
             figure = new Torus(fig_config);
-        } else if (figure_type == "3DLSystemw") {
+        } else if (figure_type == "3DLSystem") {
             figure = new LSystem3D(fig_config);
         } else {
             std::cerr << "Unreconized figure type '" + figure_type + "'" << std::endl;

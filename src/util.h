@@ -8,7 +8,7 @@
 #include "tools/ini_configuration.hh"
 #include "tools/vector.hh"
 
-#define VERBOSE true
+#define VERBOSE false
 #define M_PHI 1.6180339887
 #define M_GOLDEN_RATIO M_PHI
 
