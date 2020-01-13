@@ -7,6 +7,7 @@
 #include "../../tools/EasyImage.h"
 #include "../../tools/ini_configuration.hh"
 
+#include "../../matrices.h"
 #include "../../util.h"
 #include "../figure.h"
 
@@ -52,6 +53,23 @@ public:
         this->faces.push_back(Face(std::vector<int>{5-1, 12-1, 7-1}));
         this->faces.push_back(Face(std::vector<int>{10-1, 12-1, 11-1}));
         this->faces.push_back(Face(std::vector<int>{10-1, 11-1, 4-1}));
+
+        // // rotate the figure to achieve same image as the given ones
+        // this->points.push_back(Vector3D::point(0, 0, 0));
+        // this->points.push_back(Vector3D::point(3, 0, 0));
+        // this->points.push_back(Vector3D::point(0, 3, 0));
+        // this->points.push_back(Vector3D::point(0, 0, 3));
+
+        // int s = this->points.size();
+        // this->faces.push_back(Face(std::vector<int>{s - 4, s - 3}));
+        // this->faces.push_back(Face(std::vector<int>{s - 4, s - 2}));
+        // this->faces.push_back(Face(std::vector<int>{s - 4, s - 1}));
+
+        // this->apply_transformation(get_rotation_matrix(
+        //     1 * M_PI / 2 / phi,
+        //     0 * M_PI / 2 / phi,
+        //     0 * M_PI / 2 / phi
+        // ));
     }
 };
 
