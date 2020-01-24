@@ -1,19 +1,16 @@
 #include "util.h"
 
-std::ostream &operator<<(std::ostream &out, const Point2D &p)
-{
-	out << "(" << p.x << ", " << p.y << ")";
-	return out;
+std::ostream &operator<<(std::ostream &out, const Point2D &p) {
+    out << "(" << p.x << ", " << p.y << ")";
+    return out;
 }
 
-std::ostream &operator<<(std::ostream &out, const Line2D &l)
-{
-	out << l.p1 << ", " << l.p2;
-	return out;
+std::ostream &operator<<(std::ostream &out, const Line2D &l) {
+    out << l.p1 << ", " << l.p2;
+    return out;
 }
 
-img::EasyImage draw_2d_lines(const Lines2D& lines, const int size, const img::Color c_background)
-{
+img::EasyImage draw_2d_lines(const Lines2D &lines, const int size, const img::Color c_background) {
     // TODO: INT_MAX
     double x_min = 9999, x_max = -1, y_min = 9999, y_max = -1;
 
@@ -43,28 +40,28 @@ img::EasyImage draw_2d_lines(const Lines2D& lines, const int size, const img::Co
     const double d_x = image_x / 2 - d_center_x;
     const double d_y = image_y / 2 - d_center_y;
 
-    std::cout << "x_min: " << x_min << ", x_max: " << x_max << ", y_min: "
-        << y_min << ", y_max: " << y_max << std::endl << "x_range: " << x_range
-        << ", y_range: " << y_range << ", image_x: " << image_x << ", image_y: "
-        << image_y << std::endl << "d: " << d << ", d_center_x: " << d_center_x << ", d_center_y: " << d_center_y
-        << ", d_x: " << d_x << ", d_y: " << d_y << std::endl;
+    std::cout << "x_min: " << x_min << ", x_max: " << x_max
+              << ", y_min: " << y_min << ", y_max: " << y_max << std::endl
+              << "x_range: " << x_range << ", y_range: " << y_range
+              << ", image_x: " << image_x << ", image_y: " << image_y << std::endl
+              << "d: " << d << ", d_center_x: " << d_center_x << ", d_center_y: " << d_center_y
+              << ", d_x: " << d_x << ", d_y: " << d_y << std::endl;
 
-	img::EasyImage img = img::EasyImage(image_x, image_y, c_background);
-    for (Line2D old_line: lines) {
+    img::EasyImage img = img::EasyImage(image_x, image_y, c_background);
+    for (Line2D old_line : lines) {
         Line2D line = Line2D(
             round_to_int(d * old_line.p1.x + d_x),
             round_to_int(d * old_line.p1.y + d_y),
             round_to_int(d * old_line.p2.x + d_x),
             round_to_int(d * old_line.p2.y + d_y),
-            old_line.c
-        );
+            old_line.c);
 
         if (VERBOSE) {
             std::cout << old_line << "->" << line << std::endl;
         }
 
         if (0 <= line.p1.x && line.p1.x < image_x && 0 <= line.p1.y && line.p1.y < image_y
-            &&  0 <= line.p2.x && line.p2.x < image_x &&  0 <= line.p2.y && line.p2.y < image_y) {
+            && 0 <= line.p2.x && line.p2.x < image_x && 0 <= line.p2.y && line.p2.y < image_y) {
 
             img.draw_line(line.p1.x, line.p1.y, line.p2.x, line.p2.y, line.c);
         } else {

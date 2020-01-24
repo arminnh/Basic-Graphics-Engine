@@ -1,23 +1,7 @@
-#include "matrices.h"
+#include "transformation_matrices.h"
 #include <cmath>
 
 using namespace std;
-
-Point2D project_point(Vector3D point, double d)
-{
-    return Point2D(
-        d * point.x / -point.z,
-        d * point.y / -point.z
-    );
-}
-
-Vector3D cartesian_to_polar(const Vector3D p)
-{
-    double r = sqrt(pow(p.x, 2) + pow(p.y, 2) + pow(p.z, 2));
-    double theta = atan2(p.y, p.x);
-    double phi = acos(p.z / r);
-    return Vector3D::point(r, theta, phi);
-}
 
 const Matrix get_eye_point_transformation_matrix(const Vector3D eye_point_cartesian)
 {
