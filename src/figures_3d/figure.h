@@ -4,14 +4,13 @@
 #include <list>
 #include <vector>
 
-#include "../tools/vector.hh"
 #include "../tools/EasyImage.h"
+#include "../tools/vector.hh"
 
 #include "../util.h"
 
-class Face
-{
-public:
+class Face {
+   public:
     std::vector<int> point_indexes;
 
     Face(std::vector<int> index_list) : point_indexes(index_list) {}
@@ -20,9 +19,9 @@ public:
     friend std::ostream &operator<<(std::ostream &o, const Face &f);
 };
 
-class Figure
-{
-public:
+class Figure {
+   public:
+    Figure();
     Figure(ini::Section &config);
 
     std::vector<Vector3D> points;
@@ -43,7 +42,7 @@ public:
     virtual const std::string to_string() const;
     friend std::ostream &operator<<(std::ostream &o, const Figure &f);
 
-protected:
+   protected:
     const std::map<int, Point2D> project_points(double d) const;
 };
 

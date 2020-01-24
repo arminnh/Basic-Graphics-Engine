@@ -3,14 +3,14 @@
 #include "tools/EasyImage.h"
 #include "tools/ini_configuration.hh"
 
-#include "figures_2d/intro/color_rectangle.h"
 #include "figures_2d/intro/checkers_rectangle.h"
+#include "figures_2d/intro/color_rectangle.h"
 #include "figures_2d/intro/quarter_circle_structures.h"
 #include "figures_2d/l_system.h"
 #include "figures_3d/wireframes.h"
+#include "figures_3d/z_buffered_wireframes.h"
 
-img::EasyImage generate_image(const ini::Configuration &config)
-{
+img::EasyImage generate_image(const ini::Configuration& config) {
     std::string type = config["General"]["type"].as_string_or_die();
 
     if (type == "IntroColorRectangle") {
@@ -23,14 +23,15 @@ img::EasyImage generate_image(const ini::Configuration &config)
         return generate_l_system_2d_image(config);
     } else if (type == "Wireframe") {
         return generate_wireframe_image(config);
+    } else if (type == "ZBufferedWireframe") {
+        return generate_z_buffered_wireframe_image(config);
     } else {
         std::cerr << "Unknown image type '" << type << "'." << std::endl;
         return img::EasyImage();
     }
 }
 
-int main(int argc, char const* argv[])
-{
+int main(int argc, char const* argv[]) {
     int retVal = 0;
 
     try {
@@ -56,7 +57,7 @@ int main(int argc, char const* argv[])
                     //filename does not contain a '.' --> append a '.bmp' suffix
                     fileName += ".bmp";
                 } else {
-                    fileName = fileName.substr(0,pos) + ".bmp";
+                    fileName = fileName.substr(0, pos) + ".bmp";
                 }
 
                 try {
@@ -71,7 +72,7 @@ int main(int argc, char const* argv[])
                 std::cout << "Could not create image for " << argv[i] << std::endl;
             }
         }
-    } catch (const std::bad_alloc &exception) {
+    } catch (const std::bad_alloc& exception) {
         std::cerr << "Error: insufficient memory" << std::endl;
         retVal = 100;
     }
