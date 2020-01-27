@@ -4,6 +4,7 @@
 #include <cmath>
 #include <iostream>
 #include <list>
+#include <limits>
 #include "../tools/EasyImage.h"
 #include "../tools/ini_configuration.hh"
 #include "../tools/vector.hh"
@@ -11,11 +12,11 @@
 #define VERBOSE false
 #define M_PHI 1.6180339887
 #define M_GOLDEN_RATIO M_PHI
+#define INF std::numeric_limits<double>::infinity();
 
 class Point2D {
    public:
-    double x;
-    double y;
+    double x, y;
 
     Point2D(double x, double y) : x(x), y(y){};
 
@@ -24,8 +25,8 @@ class Point2D {
 
 class Line2D {
    public:
-    Point2D p1;
-    Point2D p2;
+    Point2D p1, p2;
+    double z1, z2; // for original z coordinates of the projected points
     img::Color c = img::Color(255, 255, 255);
 
     Line2D(Point2D p1, Point2D p2) : p1(p1), p2(p2){};

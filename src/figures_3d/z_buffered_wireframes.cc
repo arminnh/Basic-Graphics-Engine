@@ -13,26 +13,28 @@ img::EasyImage generate_z_buffered_wireframe_image(const ini::Configuration& con
     Lines2D lines;
     Figure* figure;
 
-    for (int fig_nr = 0; fig_nr < nr_figures; fig_nr++) {
-        std::cout << "Loading figure " << fig_nr << std::endl;
-        ini::Section fig_config = config["Figure" + std::to_string(fig_nr)];
+    // for (int fig_nr = 0; fig_nr < nr_figures; fig_nr++) {
+    //     std::cout << "Loading figure " << fig_nr << std::endl;
+    //     ini::Section fig_config = config["Figure" + std::to_string(fig_nr)];
 
-        figure = create_figure_from_config(fig_config, eye_point);
+    //     figure = create_figure_from_config(fig_config, eye_point);
 
-        if (figure != nullptr) {
-            // collect 2D lines
-            int i = 0;
-            for (Line2D line : figure->project(1)) {
-                lines.push_back(line);
-                if (VERBOSE) {
-                    std::cout << "Line " << i << ": " << line << std::endl;
-                }
-                i++;
-            }
-            std::cout << "Added lines for figure " << fig_nr << std::endl;
-            delete figure;
-        }
-    }
+    //     if (figure != nullptr) {
+    //         // collect 2D lines
+    //         int i = 0;
+    //         for (Line2D line : figure->project(1)) {
+    //             lines.push_back(line);
+    //             if (VERBOSE) {
+    //                 std::cout << "Line " << i << ": " << line << std::endl;
+    //             }
+    //             i++;
+    //         }
+    //         std::cout << "Added lines for figure " << fig_nr << std::endl;
+    //         // delete figure;
+    //     }
+    // }
+
+    ZBuffer(size, size);
 
     std::cout << "Generated wireframe drawing" << std::endl;
 
