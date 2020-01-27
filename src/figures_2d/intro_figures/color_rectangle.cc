@@ -1,5 +1,5 @@
 #include "color_rectangle.h"
-#include "../../util.h"
+#include "../../util/util.h"
 
 img::EasyImage ColorRectangle::generate()
 {

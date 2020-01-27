@@ -7,7 +7,7 @@
 #include "../tools/EasyImage.h"
 #include "../tools/vector.hh"
 
-#include "../util.h"
+#include "../util/util.h"
 
 class Face {
    public:

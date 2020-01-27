@@ -1,5 +1,5 @@
 #include "checkers_rectangle.h"
-#include "../../util.h"
+#include "../../util/util.h"
 
 img::EasyImage CheckersRectangle::generate()
 {

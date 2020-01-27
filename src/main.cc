@@ -3,9 +3,9 @@
 #include "tools/EasyImage.h"
 #include "tools/ini_configuration.hh"
 
-#include "figures_2d/intro/checkers_rectangle.h"
-#include "figures_2d/intro/color_rectangle.h"
-#include "figures_2d/intro/quarter_circle_structures.h"
+#include "figures_2d/intro_figures/checkers_rectangle.h"
+#include "figures_2d/intro_figures/color_rectangle.h"
+#include "figures_2d/intro_figures/quarter_circle_structures.h"
 #include "figures_2d/l_system.h"
 #include "figures_3d/wireframes.h"
 #include "figures_3d/z_buffered_wireframes.h"

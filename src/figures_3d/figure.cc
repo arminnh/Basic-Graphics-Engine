@@ -3,7 +3,7 @@
 #include "../tools/ini_configuration.hh"
 
 #include "figure.h"
-#include "../matrices.h"
+#include "../util/transformation_matrices.h"
 
 Figure::Figure(ini::Section &config)
 {

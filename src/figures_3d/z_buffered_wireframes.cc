@@ -1,7 +1,7 @@
 #include "z_buffered_wireframes.h"
 #include "figure.h"
-#include "../matrices.h"
-#include "../util.h"
+#include "../util/transformation_matrices.h"
+#include "../util/util.h"
 #include "wireframes.h"
 
 img::EasyImage generate_z_buffered_wireframe_image(const ini::Configuration& config) {

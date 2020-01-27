@@ -1,7 +1,7 @@
 #ifndef HEADER_MATRICES
 #define HEADER_MATRICES
 
-#include "tools/vector.hh"
+#include "../tools/vector.hh"
 
 #include "util.h"
 

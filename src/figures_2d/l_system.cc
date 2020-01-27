@@ -5,7 +5,7 @@
 #include "../tools/ini_configuration.hh"
 
 #include "l_system.h"
-#include "../util.h"
+#include "../util/util.h"
 
 std::string LSystem2D::apply_rules(std::string sequence, int iterations)
 {

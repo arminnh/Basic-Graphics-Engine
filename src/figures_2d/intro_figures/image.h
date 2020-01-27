@@ -3,7 +3,7 @@
 
 #include "../../tools/EasyImage.h"
 
-#include "../../util.h"
+#include "../../util/util.h"
 
 class Image
 {

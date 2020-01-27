@@ -1,6 +1,6 @@
 #include <exception>
 
-#include "../matrices.h"
+#include "../util/transformation_matrices.h"
 #include "bodies/cone.h"
 #include "bodies/cube.h"
 #include "bodies/cylinder.h"

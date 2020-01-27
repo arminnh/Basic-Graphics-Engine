@@ -7,8 +7,8 @@
 #include "../../tools/EasyImage.h"
 #include "../../tools/ini_configuration.hh"
 
-#include "../../matrices.h"
-#include "../../util.h"
+#include "../../util/transformation_matrices.h"
+#include "../../util/util.h"
 #include "../figure.h"
 
 class Icosahedron : public Figure

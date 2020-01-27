@@ -8,7 +8,7 @@
 #include "../../tools/ini_configuration.hh"
 #include "../../tools/vector.hh"
 
-#include "../../util.h"
+#include "../../util/util.h"
 #include "../figure.h"
 
 class Cone : public Figure
