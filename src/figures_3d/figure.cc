@@ -41,7 +41,6 @@ Lines2D Figure::project(double d) const
 {
     Lines2D lines;
 
-    std::vector<Vector3D> new_points;
     std::map<int, Point2D> projected_points = this->project_points(d);
 
     for (Face face : this->faces) {
@@ -49,15 +48,22 @@ Lines2D Figure::project(double d) const
             lines.push_back(Line2D(
                 projected_points.at(face.point_indexes.at(i - 1)),
                 projected_points.at(face.point_indexes.at(i)),
+                this->points.at(i-1).z,
+                this->points.at(i).z,
                 this->color
             ));
         }
 
         // add the line from the last point in the face to the first point in the face
         if (face.point_indexes.size() > 2) {
+            int first_point_index = face.point_indexes.at(0);
+            int last_point_index = face.point_indexes.at(face.point_indexes.size() - 1);
+
             lines.push_back(Line2D(
-                projected_points.at(face.point_indexes.at(0)),
-                projected_points.at(face.point_indexes.at(face.point_indexes.size() - 1)),
+                projected_points.at(first_point_index),
+                projected_points.at(last_point_index),
+                this->points.at(first_point_index).z,
+                this->points.at(last_point_index).z,
                 this->color
             ));
         }

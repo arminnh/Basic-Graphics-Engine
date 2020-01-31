@@ -26,12 +26,14 @@ class Point2D {
 class Line2D {
    public:
     Point2D p1, p2;
-    double z1, z2; // for original z coordinates of the projected points
+    double z1, z2; // original z coordinates before projection for z buffering
     img::Color c = img::Color(255, 255, 255);
 
     Line2D(Point2D p1, Point2D p2) : p1(p1), p2(p2){};
 
     Line2D(Point2D p1, Point2D p2, img::Color c) : p1(p1), p2(p2), c(c){};
+
+    Line2D(Point2D p1, Point2D p2, double z1, double z2, img::Color c) : p1(p1), p2(p2), z1(z1), z2(z2), c(c){};
 
     Line2D(double x1, double y1, double x2, double y2) : p1(Point2D(x1, y1)), p2(Point2D(x2, y2)){};
 
