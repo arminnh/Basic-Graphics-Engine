@@ -25,6 +25,12 @@ class ZBuffer : public std::vector<std::vector<double>> {
         // this->at(height - 1).at(width -1) = 0.12345;
         // std::cout << height -1 << ", " << width -1 << ": " << this->at(height - 1).at(width -1) << std::endl;
     }
+
+    double &ZBuffer::operator()(unsigned int x, unsigned int y) {
+        return this->at(y).at(x);
+    };
+
+    friend std::ostream &operator<<(std::ostream &out, const ZBuffer &b);
 };
 
 img::EasyImage generate_z_buffered_wireframe_image(const ini::Configuration &config);
@@ -32,5 +38,7 @@ img::EasyImage generate_z_buffered_wireframe_image(const ini::Configuration &con
 void draw_zbuf_line(ZBuffer &z_buffer, img::EasyImage &img,
                     unsigned int x1, unsigned int y1, double z1,
                     unsigned int x2, unsigned int y2, double z2, img::Color color);
+
+img::EasyImage draw_2d_lines_z_buffered(const Lines2D &lines, const int size, const img::Color c);
 
 #endif
