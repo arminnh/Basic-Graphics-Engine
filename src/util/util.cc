@@ -11,8 +11,8 @@ std::ostream &operator<<(std::ostream &out, const Line2D &l) {
 }
 
 img::EasyImage draw_2d_lines(const Lines2D &lines, const int size, const img::Color c_background) {
-    // TODO: INT_MAX
-    double x_min = 9999, x_max = -1, y_min = 9999, y_max = -1;
+    double x_min = std::numeric_limits<double>::infinity(), y_min = std::numeric_limits<double>::infinity();
+    double x_max = -std::numeric_limits<double>::infinity(), y_max = -std::numeric_limits<double>::infinity();
 
     for (Line2D line : lines) {
         if (line.p1.x < x_min) x_min = line.p1.x;
