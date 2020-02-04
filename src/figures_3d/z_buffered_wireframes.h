@@ -2,6 +2,7 @@
 #define HEADER_Z_BUFFERING
 
 #include <limits>
+#include "../util/util.h"
 #include "../tools/EasyImage.h"
 #include "../tools/ini_configuration.hh"
 
@@ -26,11 +27,9 @@ class ZBuffer : public std::vector<std::vector<double>> {
         // std::cout << height -1 << ", " << width -1 << ": " << this->at(height - 1).at(width -1) << std::endl;
     }
 
-    double &ZBuffer::operator()(unsigned int x, unsigned int y) {
+    double &operator()(unsigned int x, unsigned int y) {
         return this->at(y).at(x);
     };
-
-    friend std::ostream &operator<<(std::ostream &out, const ZBuffer &b);
 };
 
 img::EasyImage generate_z_buffered_wireframe_image(const ini::Configuration &config);

@@ -46,19 +46,40 @@ void draw_zbuf_line(ZBuffer &z_buffer, img::EasyImage &img,
     assert(x1 < img.get_width() && y1 < img.get_height());
     assert(x2 < img.get_width() && y2 < img.get_height());
 
-    if (x1 == x2) {
+    // std::cout << "x1: " << x1 << ", "
+    //           << "y1: " << y1 << ", "
+    //           << "z1: " << z1 << ", "
+    //           << "x2: " << x2 << ", "
+    //           << "y2: " << y2 << ", "
+    //           << "z2: " << z2 << ", " << std::endl;
+
+    if (x1 == x2 && y1 == y2) {
+        if (1 / z1 < z_buffer(x1, y1)) {
+            z_buffer(x1, y1) = 1 / z1;
+            img(x1, y1) = color;
+        }
+
+    } else if (x1 == x2) {
         // vertical line
-        for (unsigned int i = std::min(y1, y2); i <= std::max(y1, y2); i++) {
-            // TODO: fill and use z buffer while drawing
-            if (1/z < z_buffer(x1, i)) {
-                z_buffer(x1, i) = 1/z;
-                img(x1, i) = color;
+        for (unsigned int y_i = std::min(y1, y2); y_i <= std::max(y1, y2); y_i++) {
+            double loop_ratio = (y_i - std::min(y1, y2)) / (std::max(y1, y2) - std::min(y1, y2));
+            double z = z1 + loop_ratio * (z2 - z1);
+
+            if (1 / z < z_buffer(x1, y_i)) {
+                z_buffer(x1, y_i) = 1 / z;
+                img(x1, y_i) = color;
             }
         }
     } else if (y1 == y2) {
         // horizontal line
-        for (unsigned int i = std::min(x1, x2); i <= std::max(x1, x2); i++) {
-            img(i, y1) = color;
+        for (unsigned int x_i = std::min(x1, x2); x_i <= std::max(x1, x2); x_i++) {
+            double loop_ratio = (x_i - std::min(x1, x2)) / (std::max(x1, x2) - std::min(x1, x2));
+            double z = z1 + loop_ratio * (z2 - z1);
+
+            if (1 / z < z_buffer(x_i, y1)) {
+                z_buffer(x_i, y1) = 1 / z;
+                img(x_i, y1) = color;
+            }
         }
     } else {
         // line with slope m
@@ -67,6 +88,7 @@ void draw_zbuf_line(ZBuffer &z_buffer, img::EasyImage &img,
             // flip points do x1 to has the low value
             std::swap(x1, x2);
             std::swap(y1, y2);
+            std::swap(z1, z2);
         }
 
         double m = ((double)y2 - (double)y1) / ((double)x2 - (double)x1);
