@@ -1,5 +1,8 @@
 #include "z_buffered_wireframes.h"
 #include <assert.h>
+#include <algorithm>
+#include <fstream>
+#include <limits>
 #include "../util/transformation_matrices.h"
 #include "../util/util.h"
 #include "figure.h"
@@ -96,19 +99,72 @@ void draw_zbuf_line(ZBuffer &z_buffer, img::EasyImage &img,
         if (-1.0 <= m && m <= 1.0) {
             // x changes more often than y, loop over x points
             for (unsigned int i = 0; i <= (x2 - x1); i++) {
-                img(x1 + i, (unsigned int)round(y1 + m * i)) = color;
+                unsigned int x_i = x1 + i;
+                unsigned int y_i = (unsigned int)round(y1 + m * i);
+                double z_i = z1 + (i / (x2 - x1)) * (z2 - z1);
+
+                if (i / z_i < z_buffer(x_i, y_i)) {
+                    z_buffer(x_i, y_i) = 1 / z_i;
+                    img(x_i, y_i) = color;
+                }
             }
         } else if (m > 1.0) {
             // y changes more often than x, loop over y points and draw line upwards
             for (unsigned int i = 0; i <= (y2 - y1); i++) {
-                img((unsigned int)round(x1 + (i / m)), y1 + i) = color;
+                unsigned int x_i = (unsigned int)round(x1 + (i / m));
+                unsigned int y_i = y1 + i;
+                double z_i = z1 + (i / (y2 - y1)) * (z2 - z1);
+
+                if (i / z_i < z_buffer(x_i, y_i)) {
+                    z_buffer(x_i, y_i) = 1 / z_i;
+                    img(x_i, y_i) = color;
+                }
             }
         } else if (m < -1.0) {
             // y changes more often than x, loop over y points and draw line downwards
             for (unsigned int i = 0; i <= (y1 - y2); i++) {
-                img((unsigned int)round(x1 - (i / m)), y1 - i) = color;
+                unsigned int x_i = (unsigned int)round(x1 - (i / m));
+                unsigned int y_i = y1 - i;
+                double z_i = z1 + (i / (y1 - y2)) * (z2 - z1);
+
+                if (i / z_i < z_buffer(x_i, y_i)) {
+                    z_buffer(x_i, y_i) = 1 / z_i;
+                    img(x_i, y_i) = color;
+                }
             }
         }
+    }
+}
+
+// Takes a ZBuffer and writes an image of it to 'z_buffer.bmp'.
+void create_z_buffer_image(ZBuffer &z_buffer) {
+    std::string fileName("z_buffer.bmp");
+
+    img::EasyImage img = img::EasyImage(z_buffer.size(), z_buffer.at(0).size(), img::Color(255, 255, 255));
+
+    double z_buffer_max = -std::numeric_limits<double>::infinity();
+    for (unsigned int x = 0; x < z_buffer.size(); x++) {
+        double row_max = *std::max(z_buffer.at(x).begin(), z_buffer.at(x).end());
+
+        if (row_max > z_buffer_max) {
+            z_buffer_max = row_max;
+        }
+    }
+
+    for (unsigned int x = 0; x < z_buffer.size(); x++) {
+        for (unsigned int y = 0; y < z_buffer.at(x).size(); y++) {
+            uint8_t color_scaled = 255 * z_buffer(x, y) / z_buffer_max;
+            img(x, y) = img::Color(color_scaled, color_scaled, color_scaled);
+        }
+    }
+
+    try {
+        std::ofstream f_out(fileName.c_str(), std::ios::trunc | std::ios::out);
+        f_out << img;
+        std::cout << "Generate zbuffer image" << std::endl;
+
+    } catch (std::exception &ex) {
+        std::cerr << "Failed to write image to file: " << ex.what() << std::endl;
     }
 }
 
@@ -169,6 +225,8 @@ img::EasyImage draw_2d_lines_z_buffered(const Lines2D &lines, const int size, co
             std::cerr << "Cannot draw line " << line << std::endl;
         }
     }
+
+    create_z_buffer_image(z_buffer);
 
     return img;
 }
